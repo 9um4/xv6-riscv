@@ -13,9 +13,21 @@ main()
   if(cpuid() == 0){
     consoleinit();
     printfinit();
-    printf("\n");
-    printf("xv6 kernel is booting\n");
-    printf("\n");
+    printf(
+      "\n"
+      "xv6 kernel is booting\n"
+      "\n"
+      "Project 0: Booting xv6 and Change the Banner\n"
+      "\n"
+      "      ::::::::      :::    :::      :::   :::         :::   \n"
+      "    :+:    :+:     :+:    :+:     :+:+: :+:+:       :+:+:   \n"
+      "   +:+    +:+     +:+    +:+    +:+ +:+:+ +:+     +:+ +:+   \n"
+      "   +#++:++#+     +#+    +:+    +#+  +:+  +#+    +#+  +:+    \n"
+      "        +#+     +#+    +#+    +#+       +#+   +#+#+#+#+#+   \n"
+      "#+#    #+#     #+#    #+#    #+#       #+#         #+#      \n"
+      "########       ########     ###       ###         ###     \n"
+      "\n"
+    );
     kinit();         // physical page allocator
     kvminit();       // create kernel page table
     kvminithart();   // turn on paging
