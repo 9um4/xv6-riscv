@@ -91,3 +91,21 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_shutdown(void)
+{
+  printf("Shutting down...\n");
+
+  kill_all_procs();
+
+  struct proc *p;
+  struct proc *self = myproc();
+
+  // wait for all processes to terminate
+  while (!is_all_procs_terminated()) {
+    yield();
+  }
+
+
+}
