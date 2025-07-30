@@ -693,3 +693,34 @@ procdump(void)
     printf("\n");
   }
 }
+
+// Kill all processes to shutdown the system.
+void
+kill_all_procs(void) {
+  struct proc *p;
+
+  for (p = proc; p < &proc[NPROC]; p++) {
+    if (p->pid > 1 && p->state != UNUSED && p->pid != myproc()->pid) {
+      kill(p->pid);
+    }
+  }
+}
+
+// Check if all processes excluding the current
+// and init processes are terminated.
+int
+is_all_procs_terminated(void) {
+  struct proc *p;
+  struct proc *self = myproc();
+
+  int is_terminated = 1;
+
+  for (p = proc; p < &proc[NPROC]; p++) {
+    if (p != self && p->state != ZOMBIE && p->state != UNUSED) {
+      is_terminated = 0;
+      break;
+    }
+  }
+
+  return is_terminated;
+}
